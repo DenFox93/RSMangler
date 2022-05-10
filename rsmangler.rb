@@ -302,7 +302,7 @@ puts "Loading in the list" if @debug
 
 while (word = input_file_handle.gets)
 	word = word.chomp!
-	next if word.empty?
+	next if word && word.empty?
 	file_words << word
 end
 
@@ -352,7 +352,9 @@ if acronym
 
 	acro = ''
 	file_words.each do |c|
-		acro += c[0, 1]
+		unless c.nil?
+			acro += c[0, 1]
+		end
 	end
 	puts_if_allowed(acro)
 	wordlist << acro
